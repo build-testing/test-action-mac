@@ -1,0 +1,30 @@
+name: Compile C++ on macOS
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: |
+        brew update
+        brew install gcc
+
+    - name: Compile C++ code
+      run: |
+        g++ -o output main.cpp
+
+    - name: Run compiled program
+      run: |
+        ./output
