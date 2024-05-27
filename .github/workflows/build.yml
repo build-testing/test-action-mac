@@ -25,6 +25,12 @@ jobs:
       run: |
         g++ -o output main.cpp
 
+    - name: Upload binary as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: compiled-binary
+        path: ./output
+        
     - name: Run compiled program
       run: |
         ./output
